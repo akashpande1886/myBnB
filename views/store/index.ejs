@@ -1,0 +1,75 @@
+<%- include('../partials/head') %>
+</head>
+<body class="bg-gray-100">
+
+        <%- include('../partials/nav') %>
+ 
+
+    <main class="container mx-auto px-6 py-10">
+        <div class="text-center mb-12">
+            <!-- <h1 class="text-5xl font-bold text-gray-900 mb-4 tracking-tight leading-tight">
+                Welcome to <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-green-500">MyBnB</span>
+            </h1> -->
+            <h2 class="text-2xl text-gray-600 font-light tracking-wide">
+                Discover Your Next Adventure
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-green-500 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+            <% registeredHomes.forEach(home => { %>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105 cursor-pointer p-4"
+                     onclick="window.location.href='/homes/<%= home.id %>'">
+                    <% if(home.imageUrl) { %>
+                        <div class="aspect-w-16 aspect-h-9 overflow-hidden mb-4">
+                            <img src="<%=home.imageUrl%>" 
+                                 alt="<%=home.houseName%>" 
+                                 class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                        </div>
+                    <% } %>
+                    <div class="space-y-3">
+                        <h3 class="text-xl font-semibold text-gray-800"><%=home.houseName%></h3>
+                        <div class="space-y-2 text-gray-600">
+                            <p class="flex items-center">
+                                <span class="font-bold text-lg text-blue-600">$<%=home.price%></span>
+                                <span class="text-sm ml-1 text-gray-500">per night</span>
+                            </p>
+                            <p class="text-sm italic text-gray-500"><%=home.location%></p>
+                          
+                                <div class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                                  <%= home.rating %> ⭐
+                                </div>
+                                <button class="p-2 rounded-full text-white">💜</button>
+                                <button class="bg-green-600 p-2 rounded-full text-white">Book</button>
+                                <a href="/homes/<%= home.id %>"/>Details</a>
+                            
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </main>
+
+    <style>
+        @media (min-width: 640px) {
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            .grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
+    </style>
+
+</body>
+
+</html>

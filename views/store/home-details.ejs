@@ -1,0 +1,42 @@
+<%- include('../partials/head') %>
+</head>
+<body class="bg-gray-100">
+
+        <%- include('../partials/nav') %>
+ 
+
+    <main class="container mx-auto px-6 py-10">
+        <div class="text-center mb-12">
+          
+            <h2 class="text-2xl text-gray-600 font-light tracking-wide">
+               You are in home detail page...
+            </h2>
+            <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-green-500 mx-auto mt-4 rounded-full"></div>
+        </div>
+
+       
+    </main>
+
+    <style>
+        @media (min-width: 640px) {
+            .grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+        
+        @media (min-width: 1280px) {
+            .grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
+    </style>
+
+</body>
+
+</html>

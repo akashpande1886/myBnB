@@ -1,0 +1,76 @@
+<%- include('../partials/head')%>
+</head>
+
+<body>
+    <%- include('../partials/nav')%>
+    <main>
+    <div class="container mx-auto px-4 py-16 text-center">
+        <h2 class="text-9xl font-bold text-red-500 mb-4">Favourites</h2>
+        <!-- <h2 class="text-4xl font-semibold text-gray-800 mb-4">Your Favourites will appear here...</h2>
+        <%- include('../partials/head') %> -->
+    </head>
+    <body class="bg-gray-100">
+    
+        
+     
+    
+        <main class="container mx-auto px-6 py-10">
+            
+    
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+                <% registeredHomes.forEach(home => { %>
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105 cursor-pointer p-4"
+                         onclick="window.location.href='/home-details/<%= home._id %>'">
+                        <% if(home.imageUrl) { %>
+                            <div class="aspect-w-16 aspect-h-9 overflow-hidden mb-4">
+                                <img src="<%=home.imageUrl%>" 
+                                     alt="<%=home.houseName%>" 
+                                     class="w-full h-48 object-cover transition-transform duration-300 hover:scale-110">
+                            </div>
+                        <% } %>
+                        <div class="space-y-3">
+                            <h3 class="text-xl font-semibold text-gray-800"><%=home.houseName%></h3>
+                            <div class="space-y-2 text-gray-600">
+                                <p class="flex items-center">
+                                    <span class="font-bold text-lg text-blue-600">$<%=home.price%></span>
+                                    <span class="text-sm ml-1 text-gray-500">per night</span>
+                                </p>
+                                <p class="text-sm italic text-gray-500"><%=home.location%></p>
+                                <div class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                                    <%=home.rating%> ⭐
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </main>
+    
+        <style>
+            @media (min-width: 640px) {
+                .grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+            }
+            
+            @media (min-width: 1024px) {
+                .grid {
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                }
+            }
+            
+            @media (min-width: 1280px) {
+                .grid {
+                    grid-template-columns: repeat(4, minmax(0, 1fr));
+                }
+            }
+        </style>
+    
+    </body>
+    
+    </html>
+    </div>
+</main>
+</body>
+
+</html>
