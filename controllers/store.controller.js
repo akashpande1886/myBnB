@@ -1,3 +1,4 @@
+const Favourite = require("../models/fav.model");
 const Home = require("../models/home.model");
 
 // const registeredHomes = [];
@@ -30,25 +31,54 @@ exports.getBookings = (req, res, next) => {
  
 };
 exports.getFavouriteList = (req, res, next) => {
-  Home.fetchAll((registeredHomes) => {
-    res.render("store/favourites", {
-      registeredHomes: registeredHomes,
-      pageTitle: "airbnb Home",
-        currentPage:"favourites"
+  Favourite.getFav(favourites=>{
+    Home.fetchAll((registeredHomes) => {
+    const favHomes =   registeredHomes.filter(home=>favourites.includes(home.id))
+      res.render("store/favourites", {
+        favHomes: favHomes,
+        pageTitle: "My favourites",
+          currentPage:"favourites"
+      });
     });
-  });
+  })
+ 
     
 };
+exports.postAddToFavouriteList = (req,res,next)=>{
+
+  Favourite.addToFav(req.body.id,err=>{
+    if(err){
+      console.log("Error while marking favourite",err)
+    }
+    res.redirect("/favourites")
+  })
+
+}
+
 exports.getHomeDetails = (req, res, next) => {
   const homeId = req.params.homeId;
  console.log("At home details page:",homeId)
- console.log(registeredHomes)
-      res.render("store/home-details", {
-        // registeredHomes: registeredHomes(),
-       
-        pageTitle: "home details",
-          currentPage:"home"
-      });
+//  console.log(registeredHomes)
+
+ Home.findById(homeId, home=>{
+  if(!home){
+    console.log("Home not found!")
+    res.redirect("/index")
+  }else{
+   
+  
+  console.log("home details found", home)
+  res.render("store/home-details", {
+    // registeredHomes: registeredHomes(),
+   home:home,
+    pageTitle: "home details",
+      currentPage:"home"
+      
+  });
+ }
+ }
+)
+      
  
   };
 

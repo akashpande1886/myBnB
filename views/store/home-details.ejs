@@ -1,42 +1,56 @@
 <%- include('../partials/head') %>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 min-h-screen flex flex-col">
 
-        <%- include('../partials/nav') %>
- 
+  <%- include('../partials/nav') %>
 
-    <main class="container mx-auto px-6 py-10">
-        <div class="text-center mb-12">
-          
-            <h2 class="text-2xl text-gray-600 font-light tracking-wide">
-               You are in home detail page...
-            </h2>
-            <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-green-500 mx-auto mt-4 rounded-full"></div>
+  <main class="flex-grow container mx-auto px-6 py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-bold text-gray-800 mb-2">
+        <%= home.houseName %>
+      </h1>
+      <p class="text-lg text-gray-600">You are on the Home Detail Page</p>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-500 to-green-500 mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+      <% if(home.imageUrl) { %>
+        <img src="<%= home.imageUrl %>" 
+             alt="<%= home.houseName %>" 
+             class="w-full h-[400px] object-cover transition-transform duration-300 hover:scale-105" />
+      <% } %>
+   
+
+
+      <div class="p-8 space-y-6">
+        <div class="flex justify-between items-center">
+          <h2 class="text-2xl font-semibold text-gray-800"><%= home.houseName %></h2>
+          <span class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+            ⭐ <%= home.rating %>
+          </span>
         </div>
 
-       
-    </main>
+        <p class="text-gray-600 text-lg italic"><%= home.location %></p>
 
-    <style>
-        @media (min-width: 640px) {
-            .grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-        
-        @media (min-width: 1024px) {
-            .grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
-        
-        @media (min-width: 1280px) {
-            .grid {
-                grid-template-columns: repeat(4, minmax(0, 1fr));
-            }
-        }
-    </style>
+        <p class="text-2xl font-bold text-blue-600">$<%= home.price %> 
+          <span class="text-base font-medium text-gray-500">/ night</span>
+        </p>
+
+        <div class="flex space-x-4 pt-4">
+           
+            <%- include('../partials/favourite') %>
+
+          <button class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg transition-all duration-200">
+            Book Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-white text-center text-sm text-gray-400 py-6 border-t">
+    &copy; <%= new Date().getFullYear() %> Airbnb Clone. All rights reserved.
+  </footer>
 
 </body>
-
 </html>

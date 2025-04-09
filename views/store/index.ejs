@@ -39,9 +39,10 @@
                                 <div class="inline-flex items-center px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
                                   <%= home.rating %> ⭐
                                 </div>
-                                <button class="p-2 rounded-full text-white">💜</button>
+                                <%- include('../partials/favourite',{home:home}) %>    
+                                <!-- <button class="p-2 rounded-full text-white">💜</button> -->
                                 <button class="bg-green-600 p-2 rounded-full text-white">Book</button>
-                                <a href="/homes/<%= home.id %>"/>Details</a>
+
                             
                         </div>
                     </div>
