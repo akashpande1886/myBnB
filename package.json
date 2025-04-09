@@ -19,7 +19,7 @@
   "scripts": {
     "tailwind": "tailwindcss -i ./views/input.css -o ./public/output.css --watch",
     "build": "tailwindcss -i ./views/input.css -o ./public/output.css --minify",
-    "server": "nodemon app.js",
+    "server": "node app.js",
     "start": "concurrently \"npm run server\" \"npm run tailwind\""
   },
   "author": "",
