@@ -31,19 +31,3 @@ homeIds = homeIds.filter((homeId) => delHomeId !== homeId);
   }
 };
 
-// const mongoose = require("mongoose");
-// const { Schema }  = require("mongoose");
-// const homeModel = require("./home.model");
-
-
-// const  favouriteSchema = mongoose.Schema({
-//  homeId:{
-//   type:Schema.Types.ObjectId,
-//   ref:homeModel
-//  }
-
-   
-// },{
-//   timestamps:true
-// });
-// module.exports = mongoose.model('Favourite',favouriteSchema)
