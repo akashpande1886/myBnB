@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const rootDir = require("../utils/pathUtils");
 const { root } = require("postcss");
+const Favourite = require("./fav.model");
 const homeDataPath = path.join(rootDir, "data", "homes.json");
 // let registeredHomes = []
 module.exports = class Home {
@@ -13,9 +14,16 @@ module.exports = class Home {
     this.imageUrl = imageUrl;
   }
   save() {
-    this.id = Math.random().toString(); //gen random id
-    Home.fetchAll((registeredHomes) => {     //first fetch all the homes
-      registeredHomes.push(this);               // push the new home to registered homes
+    Home.fetchAll((registeredHomes) => {
+      if (this.id) {
+        registeredHomes = registeredHomes.map((home) =>
+          home.id === this.id ? this : home
+        );
+      } else {
+        this.id = Math.random().toString(); //gen random id
+        //first fetch all the homes
+        registeredHomes.push(this); // push the new home to registered homes
+      }
 
       fs.writeFile(homeDataPath, JSON.stringify(registeredHomes), (error) => {
         console.log("File Writing concluded", error);
@@ -28,10 +36,22 @@ module.exports = class Home {
       callback(!err ? JSON.parse(data) : []);
     });
   }
-  static findById(homeId,callback){
-    this.fetchAll(homes=>{
-        const homeFound = homes.find(home => home.id ===homeId);
-        callback(homeFound)
-    })
+  static findById(homeId, callback) {
+    this.fetchAll((homes) => {
+      const homeFound = homes.find((home) => home.id === homeId);
+      callback(homeFound);
+    });
+  }
+  static deleteById(homeId, callback) {
+    this.fetchAll((homes) => {
+homes = homes.filter(home=> home.id !== homeId);
+
+      fs.writeFile(homeDataPath, JSON.stringify(homes), err=>{
+        Favourite.deleteById(homeId,callback)
+      }
+    )
+    });
   }
 };
+
+
