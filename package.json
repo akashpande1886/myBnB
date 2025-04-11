@@ -20,9 +20,9 @@
   },
   "scripts": {
     "tailwind": "postcss ./src/views/input.css -o ./src/public/output.css --watch",
-    "build": "postcss ./src/views/input.css -o ./src/public/output.css --env production",
-    "server": "nodemon app.js",
-    "start": "concurrently \"npm run server\" \"npm run tailwind\""
+    "build": "npx postcss ./src/views/input.css -o ./src/public/output.css --env production",
+    "start": "concurrently \"npm run server\" \"npm run tailwind\"",
+    "server": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
