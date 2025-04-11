@@ -76,11 +76,8 @@ Home.findByIdAndDelete(homeId)
 .then(()=>{
   res.redirect("/host/host-home-list");
 })
-.catch(()=>{
-  if(err){
-    console.log("error while deleting",err)
-  }
- 
+.catch(err=>{
+  console.log("Error while finding home",err)
 })
 
 };
