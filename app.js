@@ -22,8 +22,8 @@ app.use((req, res, next) => {
 
 app.use(express.urlencoded()); //as bodyparser
 
-app.use("/host", hostRouter);
-app.use(storeRouter);
+// app.use("/host", hostRouter);
+// app.use(storeRouter);
 
 app.use(errorController.pageNotFound);
 app.get("/", (req, res) => {
