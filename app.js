@@ -26,10 +26,9 @@ app.use("/host", hostRouter);
 app.use(storeRouter);
 
 app.use(errorController.pageNotFound);
-// const PORT = 8000;
-// app.listen(PORT, () => {
-//   console.log(`Server running on address http://localhost:${PORT}`);
-// });
+app.get("/", (req, res) => {
+  res.json({ message: "Hello from backend" });
+});
 connectDB()
   .then(() => {
     app.listen(process.env.PORT || 8000, () => {
